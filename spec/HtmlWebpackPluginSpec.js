@@ -23,6 +23,11 @@ function testHtmlPlugin(webpackConfig, expectedResults, outputFile, done, expect
       expect(compilationWarnings).not.toBe('');
     } else {
       expect(compilationWarnings).toBe('');
+    }
+    var outputFileExists = fs.existsSync(path.join(OUTPUT_DIR, outputFile));
+    expect(outputFileExists).toBe(true);
+    if(!outputFileExists) {
+      return done();
     }    
     var htmlContent = fs.readFileSync(path.join(OUTPUT_DIR, outputFile)).toString();
     for (var i = 0; i < expectedResults.length; i++) {
