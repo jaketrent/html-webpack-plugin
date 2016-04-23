@@ -264,6 +264,15 @@ HtmlWebpackPlugin.prototype.injectAssetsIntoHtml = function(html, templateParams
   var assets = templateParams.htmlWebpackPlugin.files;
   var chunks = Object.keys(assets.chunks);
 
+  //check to see if we have the prefetch option in our options object
+  var prefetch = this.options.preFetch;
+  //this is the defay
+  var strCSSAttribute = 'stylesheet';
+  //if the prefetch option is set to true then add it to the stylesheet element
+  if (prefetch) {
+    strCSSAttribute = 'dns-prefetch';
+  }
+
   // Gather all css and script files
   var styles = [];
   var scripts = [];
@@ -277,7 +286,7 @@ HtmlWebpackPlugin.prototype.injectAssetsIntoHtml = function(html, templateParams
   });
   // Turn css files into link tags
   styles = styles.map(function(stylePath) {
-    return '<link href="' + stylePath + '" rel="stylesheet">';
+    return '<link href="' + stylePath + '" rel="'+ strCSSAttribute +'">';
   });
   // Injections
   var head = [];

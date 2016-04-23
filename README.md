@@ -72,6 +72,7 @@ Allowed values are as follows:
   included scripts and css files. This is useful for cache busting.
 - `chunks`: Allows you to add only some chunks (e.g. only the unit-test chunk)
 - `excludeChunks`: Allows you to skip some chunks (e.g. don't add the unit-test chunk) 
+- `preFetch`: 'true' Gives a hint to the browser to perform a DNS lookup in the background to improve performance if false then 'stylesheet' attribute is added by default.  
 
 Here's an example webpack config illustrating how to use these options:
 ```javascript
